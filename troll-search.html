@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>BusqueTroll - El buscador más troll</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+        }
+        .logo {
+            font-size: 3em;
+            margin: 40px 0;
+            color: #333;
+            text-shadow: 2px 2px #ddd;
+        }
+        .search-container {
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+        }
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+        .search-button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            border: none;
+            border-radius: 25px;
+            background: #4285f4;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .search-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">🤪 BusqueTroll 🤪</div>
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Busca algo... si te atreves" id="searchInput">
+        <button class="search-button" onclick="trollSearch()">Buscar</button>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const trollResponses = [
+            "¿En serio quieres buscar eso? 😅 Mejor búscate una vida...",
+            "404: Tu búsqueda se fue de vacaciones y no volverá 🏖️",
+            "🎵 Never gonna give you up, never gonna let you down... 🎵",
+            "Loading... Error: Se me olvidó cómo buscar 🤔",
+            "¡Ups! Tu búsqueda cayó en un agujero negro 🕳️",
+            "Resultado encontrado... ¡Era broma! 😝",
+            "🦖 Tu búsqueda es tan antigua como los dinosaurios",
+            "⚠️ Warning: Demasiada trolleada detectada",
+            "🎮 Achievement unlocked: ¡Búsqueda troll completada!",
+            "🤖 Beep boop... Sistema sobrecargado de trolleo"
+        ];
+
+        const trollSearch = () => {
+            const input = document.getElementById('searchInput');
+            
+            // Diferentes bromas según la interacción
+            if (input.value.trim() === '') {
+                alert("¿Buscando el vacío de tu alma? 😜");
+                return;
+            }
+
+            clickCount++;
+            
+            // Efectos trolls aleatorios
+            switch(Math.floor(Math.random() * 5)) {
+                case 0:
+                    input.value = input.value.split('').reverse().join('');
+                    break;
+                case 1:
+                    input.value = "¿Por qué buscas eso? 🤔";
+                    break;
+                case 2:
+                    input.style.transform = 'rotate(180deg)';
+                    setTimeout(() => input.style.transform = 'none', 1000);
+                    break;
+                case 3:
+                    document.body.style.transform = 'rotate(360deg)';
+                    setTimeout(() => document.body.style.transform = 'none', 1000);
+                    break;
+                case 4:
+                    input.style.fontSize = '2em';
+                    setTimeout(() => input.style.fontSize = '1.2em', 1000);
+                    break;
+            }
+
+            // Mostrar respuesta troll aleatoria
+            alert(trollResponses[Math.floor(Math.random() * trollResponses.length)]);
+
+            // Easter egg después de varios clicks
+            if (clickCount >= 5) {
+                document.body.style.background = `hsl(${Math.random() * 360}, 70%, 80%)`;
+                alert("¡Felicidades! Has desbloqueado el modo disco 🕺💃");
+            }
+        }
+
+        // Hacer que la caja de búsqueda huya del cursor
+        document.querySelector('.search-box').addEventListener('mouseover', function(e) {
+            if (Math.random() > 0.7) { // 30% de probabilidad de que huya
+                const box = e.target;
+                box.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
+                setTimeout(() => box.style.transform = 'none', 500);
+            }
+        });
+    </script>
+</body>
+</html>
